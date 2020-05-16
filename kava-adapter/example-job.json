@@ -1,0 +1,21 @@
+{
+  "initiators": [
+    {
+      "type": "cron",
+      "params": {
+        "schedule": "CRON_TZ=UTC */30 * * * * *"
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "type": "HTTPPostWithUnrestrictedNetworkAccess",
+      "params": {
+        "url": "http://localhost:8080",
+        "post": "http://localhost:8080",
+        "body": "{\"market\": \"bnb:usd\"}",
+        "headers": {"Content-Type": ["application/json"]}
+      }
+    }
+  ]
+}
