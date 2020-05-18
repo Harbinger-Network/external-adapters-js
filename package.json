@@ -4,7 +4,6 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "kava-adapter",
     "external-adapter",
     "example",
     "1forge",
@@ -25,6 +24,7 @@
     "finnhub",
     "fixer",
     "fmpcloud",
+    "kava",
     "kaiko",
     "oilpriceapi",
     "openexchangerates",

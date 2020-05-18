@@ -1,5 +1,5 @@
 {
-  "name": "kava-adapter",
+  "name": "kava",
   "version": "0.1.0",
   "license": "MIT",
   "main": "index.js",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@chainlink/ea-bootstrap": "0.0.1",
-    "@kava-labs/kava-tools": "^0.1.2"
+    "@chainlink/external-adapter": "^0.2.3",
+    "@kava-labs/kava-tools": "^0.1.3"
   }
 }
