@@ -9,13 +9,8 @@ RUN make deps
 
 COPY bootstrap bootstrap
 COPY $adapter $adapter
-RUN make build
 
-FROM node:12-alpine
-ARG adapter
-WORKDIR /home/node/app
+EXPOSE 8080
 
-COPY --from=builder /home/node/app/$adapter/dist ./
-COPY --from=builder /home/node/app/$adapter/package.json ./
-
+WORKDIR /home/node/app/$adapter
 CMD ["yarn", "server"]
