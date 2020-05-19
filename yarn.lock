@@ -23,14 +23,6 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@chainlink/external-adapter@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@chainlink/external-adapter/-/external-adapter-0.2.3.tgz#9011cf986623b9989ca376ead986943e234ed886"
-  integrity sha512-kabKUyFpRlARKqhtEIh1I4q4r45CsZN3La4xc5ShCIs9zBZrfE2anvPqlUbg1+AhOJ0ZtGVQRRTymtw4fem52Q==
-  dependencies:
-    axios "^0.19.2"
-    winston "^3.2.1"
-
 "@kava-labs/javascript-sdk@^2.0.0-beta.1":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@kava-labs/javascript-sdk/-/javascript-sdk-2.0.0-beta.1.tgz#f6db99ffe7872884e5f20a04395ec16af7e44695"
@@ -1553,7 +1545,7 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
     md5.js "^1.3.4"
     safe-buffer "^5.1.1"
 
-express@^4.14.0, express@^4.17.0:
+express@^4.14.0, express@^4.17.0, express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
   integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==

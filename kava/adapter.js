@@ -8,15 +8,12 @@ const customParams = {
 const createRequest = async (input, callback) => {
   // Load environment variables
   const lcdURL = process.env.LCD_URL
-  console.log(lcdURL)
   const mnemonic = process.env.MNEMONIC
   const expiry = process.env.EXPIRY
   const expiryThreshold = process.env.EXPIRY_THRESHOLD
   const deviation = process.env.DEVIATION
-  console.log(JSON.stringify(input))
   const validator = new Validator(callback, input, customParams)
   const jobRunID = validator.validated.id
-  console.log(JSON.stringify(validator.validated))
 
   // Initiate price oracle
   const oracle = new PriceOracle(
