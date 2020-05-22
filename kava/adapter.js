@@ -55,7 +55,8 @@ const createRequest = async (input, callback) => {
     const txHash = await oracle.postNewPrice(
       fetchedPrice.price,
       oracle.marketIDs[0],
-      accountData
+      accountData,
+      0
     )
     const response = {
       data: {
