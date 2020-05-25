@@ -28,7 +28,7 @@ const createRequest = async (input, callback) => {
     callback(500, Requester.errored(jobRunID, error))
     return
   }
-  const accountData = await oracle.client.getAccountData()
+  const accountData = await oracle.client.getAccount(oracle.client.wallet.address)
   const fetchedPrice = await oracle.fetchPrice(oracle.marketIDs[0])
   if (!fetchedPrice.success) {
     callback(500, Requester.errored(jobRunID, 'no price could be fetched'))
@@ -51,27 +51,34 @@ const createRequest = async (input, callback) => {
     callback(response.status, Requester.success(jobRunID, response))
     return
   }
+  let txHash
   try {
-    const txHash = await oracle.postNewPrice(
+    txHash = await oracle.postNewPrice(
       fetchedPrice.price,
       oracle.marketIDs[0],
-      accountData,
+      accountData.value,
       0
     )
-    const response = {
-      data: {
-        market: oracle.marketIDs[0],
-        price: fetchedPrice.price,
-        tx_hash: txHash,
-        result: 'price updated'
-      },
-      status: 200
-    }
-    callback(response.status, Requester.success(jobRunID, response))
-    return
   } catch (error) {
-    callback(500, Requester.errored(jobRunID, error))
+    callback(500, Requester.errored(jobRunID, `failed posting tx to chain: ${error}`))
+    return
   }
+  try {
+    await oracle.client.checkTxHash(txHash, 20000)
+  } catch (error) {
+    callback(500, Requester.errored(jobRunID, `tx not accepted by chain ${error}`))
+    return
+  }
+  const response = {
+    data: {
+      market: oracle.marketIDs[0],
+      price: fetchedPrice.price,
+      tx_hash: txHash,
+      result: 'price updated'
+    },
+    status: 200
+  }
+  callback(response.status, Requester.success(jobRunID, response))
 }
 
 module.exports.createRequest = createRequest
