@@ -12,7 +12,8 @@ const createRequest = async (input, callback) => {
   const expiry = process.env.EXPIRY
   const expiryThreshold = process.env.EXPIRY_THRESHOLD
   const deviation = process.env.DEVIATION
-  const validator = new Validator(callback, input, customParams)
+  const validator = new Validator(input, customParams)
+  if (validator.error) return callback(validator.error.statusCode, validator.error)
   const jobRunID = validator.validated.id
 
   // Initiate price oracle
