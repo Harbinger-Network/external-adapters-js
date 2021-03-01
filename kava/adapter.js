@@ -12,16 +12,23 @@ const createRequest = async (input, callback) => {
   const expiry = process.env.EXPIRY
   const expiryThreshold = process.env.EXPIRY_THRESHOLD
   const deviation = process.env.DEVIATION
+  const feeAmount = process.env.FEE
   const validator = new Validator(input, customParams)
   if (validator.error) return callback(validator.error.statusCode, validator.error)
   const jobRunID = validator.validated.id
+
+  let fee = { amount: [], gas: String(150000) }
+  if (feeAmount !== "") {
+    fee = { amount: [{denom: "ukava", amount: String(feeAmount) }], gas: String(150000) }
+  }
 
   // Initiate price oracle
   const oracle = new PriceOracle(
     validator.validated.data.market.split(','),
     expiry,
     expiryThreshold,
-    deviation
+    deviation,
+    fee,
   )
   try {
     await oracle.initClient(lcdURL, mnemonic)
