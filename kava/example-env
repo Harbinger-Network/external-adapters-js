@@ -12,3 +12,5 @@ DEVIATION=0.005
 EXPIRY=14400
 # always post a price if the expiry is in less than 5 minutes
 EXPIRY_THRESHOLD=300
+# optional fee to include with each transaction (ukava units, example, 0.01 KAVA).
+FEE=10000
